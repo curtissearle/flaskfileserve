@@ -12,7 +12,8 @@
             font-family: Arial, sans-serif;
         }
 
-        img {
+        img,
+        video {
             max-width: 80%;
             max-height: 80vh;
         }
@@ -31,7 +32,15 @@
 </head>
 
 <body>
+    {% if filename.rsplit('.', 1)[1].lower() in ['mp4', 'avi', 'mov', 'mkv', 'flv', 'wmv', 'webm', 'mpeg', 'mpg', '3gp',
+    'm4v', 'ogv'] %}
+    <video controls>
+        <source src="{{ url_for('uploaded_file', filename=filename) }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% else %}
     <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Image">
+    {% endif %}
     <p>{{ current_index }}/{{total_files}}</p>
     <div class="nav-buttons">
         <button onclick="navigate(-1)" {% if current_index==0 %}disabled{% endif %}>Previous</button>

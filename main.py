@@ -43,4 +43,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     app.config['FILE_FOLDER'] = args.folder
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
